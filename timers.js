@@ -1,18 +1,23 @@
 const { setInterval } = require("timers");
 
-const waitTime = 3000;
+const waitTime = 5000;
 const waitInterval = 500;
 let currenTime = 0;
 
 const incTime = () => {
     currenTime += waitInterval;
-    console.log(`waiting ${currenTime / 1000} seconds`)
+    const p = Math.floor((currenTime/waitTime)* 100);
+    process.stdout.clearLine();
+    process.stdout.cursorTo(0);
+    process.stdout.write(`waiting... ${p}%`);
 };
 
 console.log(`setting a ${waitTime / 1000} second delay`);
 
 const timerFinished = () => {
     clearInterval(interval);
+    process.stdout.clearLine();
+    process.stdout.cursorTo(0);
     console.log("done");
 };
 
